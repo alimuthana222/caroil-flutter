@@ -4,7 +4,74 @@
 -- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- Vehicles Table
+-- User Profiles Table
+CREATE TABLE user_profiles (
+    id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+    email VARCHAR(255) NOT NULL,
+    full_name VARCHAR(255),
+    phone_number VARCHAR(20),
+    avatar_url TEXT,
+    preferred_language VARCHAR(10) DEFAULT 'ar',
+    region VARCHAR(50) DEFAULT 'Middle East',
+    notifications_enabled BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- User Vehicles Table (Junction table for user-owned vehicles)
+CREATE TABLE user_vehicles (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID NOT NULL REFERENCES user_profiles(id) ON DELETE CASCADE,
+    vehicle_id UUID NOT NULL REFERENCES vehicles(id) ON DELETE CASCADE,
+    nickname VARCHAR(100),
+    purchase_year INTEGER,
+    current_mileage INTEGER NOT NULL DEFAULT 0,
+    is_primary BOOLEAN DEFAULT FALSE,
+    color VARCHAR(50),
+    license_plate VARCHAR(20),
+    custom_settings JSONB,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    
+    UNIQUE(user_id, vehicle_id)
+);
+
+-- Notifications Table
+CREATE TABLE notifications (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID NOT NULL REFERENCES user_profiles(id) ON DELETE CASCADE,
+    vehicle_id UUID REFERENCES vehicles(id) ON DELETE CASCADE,
+    type VARCHAR(50) NOT NULL, -- oil_change, filter_change, general_maintenance, etc.
+    title VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    scheduled_date TIMESTAMP WITH TIME ZONE NOT NULL,
+    is_read BOOLEAN DEFAULT FALSE,
+    is_completed BOOLEAN DEFAULT FALSE,
+    data JSONB,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Row Level Security (RLS) Policies
+ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_vehicles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE notifications ENABLE ROW LEVEL SECURITY;
+
+-- User profiles can only be accessed by the owner
+CREATE POLICY "Users can view own profile" ON user_profiles FOR SELECT USING (auth.uid() = id);
+CREATE POLICY "Users can update own profile" ON user_profiles FOR UPDATE USING (auth.uid() = id);
+CREATE POLICY "Users can insert own profile" ON user_profiles FOR INSERT WITH CHECK (auth.uid() = id);
+
+-- User vehicles can only be accessed by the owner
+CREATE POLICY "Users can view own vehicles" ON user_vehicles FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert own vehicles" ON user_vehicles FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can update own vehicles" ON user_vehicles FOR UPDATE USING (auth.uid() = user_id);
+CREATE POLICY "Users can delete own vehicles" ON user_vehicles FOR DELETE USING (auth.uid() = user_id);
+
+-- Notifications can only be accessed by the owner
+CREATE POLICY "Users can view own notifications" ON notifications FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can update own notifications" ON notifications FOR UPDATE USING (auth.uid() = user_id);
+
+-- Vehicles Table (public read access for vehicle data)
 CREATE TABLE vehicles (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     vin VARCHAR(17) NOT NULL UNIQUE,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'config/supabase_config.dart';
-import 'screens/splash_screen.dart';
+import 'services/auth_service.dart';
+import 'screens/login_screen.dart';
+import 'screens/main_app_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,7 +69,19 @@ class MyApp extends StatelessWidget {
         Locale('en', 'US'), // English
       ],
       locale: const Locale('ar', 'SA'),
-      home: const SplashScreen(),
+      home: StreamBuilder(
+        stream: AuthService.authStateChanges,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+          
+          final isAuthenticated = AuthService.isAuthenticated;
+          return isAuthenticated ? const MainAppScreen() : const LoginScreen();
+        },
+      ),
     );
   }
 }

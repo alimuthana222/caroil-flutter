@@ -1,277 +1,283 @@
-# OilMate - تطبيق دليل زيت السيارات الشامل
+# OilMate - Complete Car Oil Management System
 
-تطبيق Flutter شامل لتوصيات زيت السيارات مع قاعدة بيانات Supabase وبحث VIN متقدم.
+A comprehensive Flutter application for managing car maintenance with real-time oil recommendations, VIN lookup, and Supabase database integration.
 
-## 🌟 المميزات الجديدة
+## 🌟 Features
 
-### 🗄️ قاعدة بيانات Supabase الشاملة
-- **قاعدة بيانات حقيقية**: تخزين شامل لمعلومات السيارات والزيوت
-- **بيانات محدثة**: معلومات دقيقة لسيارات الولايات المتحدة والشرق الأوسط والصين
-- **دعم المناطق المختلفة**: تصنيف السيارات حسب المنطقة الجغرافية
+### 🔐 User Authentication
+- Complete user registration and login system
+- Profile management with customizable settings
+- Secure Supabase authentication with Row Level Security
 
-### 🔍 بحث VIN متطور
-- **تكامل NHTSA API**: فك تشفير VIN من مصادر رسمية
-- **تخزين ذكي**: حفظ النتائج في قاعدة البيانات للوصول السريع
-- **اكتشاف المنطقة**: تحديد منطقة السيارة تلقائياً من رقم VIN
+### 🚗 Vehicle Management
+- **Multi-vehicle garage** - Manage multiple cars
+- **VIN lookup integration** - Automatic vehicle data retrieval
+- **Vehicle customization** - Nicknames, colors, license plates
+- **Mileage tracking** - Current odometer readings
 
-### 🛠️ معلومات المحرك التفصيلية
-- **مواصفات شاملة**: قوة المحرك، عزم الدوران، نوع الوقود
-- **معلومات تقنية**: نسبة الضغط، نظام الصمامات، التيربو/السوبرتشارج
-- **توافق الزيوت**: أنواع الزيت المتوافقة مع كل محرك
+### 🛠️ Maintenance Tracking
+- **Service history** - Complete maintenance records
+- **Smart reminders** - Automated maintenance notifications
+- **Cost tracking** - Multi-currency support (SAR, USD, EUR, AED, CNY)
+- **Service scheduling** - Plan upcoming maintenance
 
-### 🛢️ توصيات الزيت المتقدمة
-- **كميات دقيقة**: كمية الزيت مع وبدون الفلتر
-- **فترات الصيانة**: مواعيد تغيير الزيت المحددة
-- **أرقام القطع**: أرقام فلاتر الزيت الأصلية
-- **علامات بديلة**: خيارات متعددة للعلامات التجارية
+### 🛢️ Oil Recommendations
+- **Precise specifications** - Oil capacity with/without filter
+- **Filter details** - OEM part numbers and torque specs
+- **Multi-brand options** - Primary and alternative recommendations
+- **Regional support** - USA, Middle East, China, Europe, Asia
 
-### 📱 واجهة مستخدم محسنة
-- **تصميم متقدم**: واجهة عصرية مع Material Design 3
-- **دعم العربية**: واجهة كاملة باللغة العربية مع دعم RTL
-- **تنقل سهل**: علامات تبويب وشاشات منظمة
-- **رسوم متحركة**: انتقالات سلسة وتأثيرات بصرية
+### 📱 Modern UI/UX
+- **Arabic-first design** - RTL language support
+- **Tabbed navigation** - Intuitive bottom navigation
+- **Dark/Light themes** - System preference support
+- **Responsive design** - Works on phones and tablets
 
-### 📊 إدارة الصيانة
-- **سجلات شاملة**: تتبع جميع أعمال الصيانة
-- **تكاليف مفصلة**: تسجيل التكاليف بعملات مختلفة
-- **تواريخ الخدمة**: تتبع مواعيد الصيانة والكيلومترات
-- **ملاحظات مخصصة**: إضافة ملاحظات لكل عملية صيانة
+### 🌍 Regional Support
+- **Global coverage** - Vehicles from multiple regions
+- **Local specifications** - Region-specific oil recommendations
+- **Multi-currency** - Localized pricing and costs
+- **Multi-language** - Arabic and English support
 
-### 🔧 تتبع التعديلات
-- **حالة التعديل**: تسجيل ما إذا كانت السيارة معدلة
-- **وصف التعديلات**: تفاصيل التعديلات المثبتة
-- **تأثير على التوصيات**: تعديل توصيات الزيت حسب التعديلات
+## 🏗️ Technical Architecture
 
-## 🏗️ البنية التقنية الجديدة
+### Database Schema
+- **10 comprehensive tables** with real car data
+- **Row Level Security (RLS)** for data protection
+- **Optimized indexing** for fast queries
+- **JSONB support** for flexible data storage
 
-### 📁 هيكل المشروع المحدث
+### Flutter Stack
+- **Latest Flutter 3.x** with Material Design 3
+- **Supabase integration** for backend services
+- **JSON serialization** for type-safe data models
+- **State management** with built-in solutions
+
+### Dependencies
+```yaml
+dependencies:
+  supabase_flutter: ^2.5.6      # Backend integration
+  json_annotation: ^4.9.0       # Model serialization
+  equatable: ^2.0.5             # Value equality
+  uuid: ^4.4.0                  # Unique identifiers
+  shared_preferences: ^2.2.3    # Local storage
+  cached_network_image: ^3.3.1  # Image caching
+  intl: ^0.19.0                 # Internationalization
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Flutter SDK 3.8.1 or higher
+- Dart SDK 3.8.1 or higher
+- Supabase account
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/alimuthana222/caroil-flutter.git
+   cd caroil-flutter
+   ```
+
+2. **Install dependencies**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Set up Supabase**
+   - Follow the detailed guide in [`SUPABASE_SETUP.md`](SUPABASE_SETUP.md)
+   - Update `lib/config/supabase_config.dart` with your credentials
+
+4. **Generate code**
+   ```bash
+   flutter packages pub run build_runner build
+   ```
+
+5. **Run the app**
+   ```bash
+   flutter run
+   ```
+
+## 📋 Supabase Setup
+
+The app requires a Supabase backend for full functionality. See [`SUPABASE_SETUP.md`](SUPABASE_SETUP.md) for detailed setup instructions.
+
+### Quick Setup:
+1. Create a Supabase project
+2. Run the SQL schema from `database/schema.sql`
+3. Optionally add seed data from `database/seed_data.sql`
+4. Update the config file with your project URL and API key
+
+## 📱 App Structure
 
 ```
 lib/
 ├── config/
-│   └── supabase_config.dart      # إعدادات Supabase
-├── models/
-│   ├── vehicle_model.dart        # نموذج بيانات السيارة
-│   ├── oil_specification.dart    # مواصفات الزيت
-│   ├── engine_specification.dart # مواصفات المحرك
-│   └── maintenance_record.dart   # سجلات الصيانة
-├── services/
-│   ├── car_database_service.dart # خدمة قاعدة البيانات الشاملة
-│   └── vin_service.dart          # خدمة VIN الأساسية (محتفظ بها للتوافق)
-├── screens/
-│   ├── splash_screen.dart        # شاشة البحث الرئيسية
-│   ├── vin_result_screen.dart    # نتائج البحث المحدثة
-│   ├── detailed_vehicle_screen.dart # معلومات السيارة التفصيلية
-│   ├── maintenance_screen.dart   # إضافة سجلات الصيانة
-│   └── oil_products_screen.dart  # عرض منتجات الزيت
-└── main.dart                     # نقطة البداية مع تهيئة Supabase
+│   └── supabase_config.dart          # Supabase configuration
+├── models/                           # Data models
+│   ├── user_model.dart              # User profile model
+│   ├── user_vehicle.dart            # User vehicle model
+│   ├── notification_model.dart      # Notification model
+│   ├── vehicle_model.dart           # Vehicle data model
+│   ├── engine_specification.dart    # Engine specs model
+│   ├── oil_specification.dart       # Oil recommendation model
+│   └── maintenance_record.dart      # Maintenance record model
+├── services/                        # Business logic
+│   ├── auth_service.dart           # Authentication service
+│   ├── car_database_service.dart   # Vehicle data service
+│   └── vin_service.dart            # VIN lookup service
+├── screens/                         # UI screens
+│   ├── login_screen.dart           # Authentication screen
+│   ├── main_app_screen.dart        # Main navigation
+│   ├── dashboard_screen.dart       # Home dashboard
+│   ├── garage_screen.dart          # Vehicle management
+│   ├── splash_screen.dart          # VIN search screen
+│   ├── maintenance_screen.dart     # Maintenance tracking
+│   ├── oil_products_screen.dart    # Oil catalog
+│   ├── settings_screen.dart        # App settings
+│   └── ...                        # Additional screens
+└── main.dart                       # App entry point
 
 database/
-├── schema.sql                    # مخطط قاعدة البيانات الكامل
-└── seed_data.sql                 # بيانات أولية شاملة
+├── schema.sql                      # Complete database schema
+└── seed_data.sql                  # Sample data for testing
 ```
 
-### 🗃️ قاعدة البيانات Supabase
+## 🔧 Key Features Implementation
 
-#### الجداول الرئيسية:
+### Authentication Flow
+- **Automatic auth state management** with StreamBuilder
+- **Persistent sessions** across app restarts
+- **Profile creation** on first registration
+- **Password reset** functionality
 
-1. **vehicles** - معلومات السيارات الأساسية
-2. **engine_specifications** - مواصفات المحركات التفصيلية  
-3. **oil_specifications** - توصيات الزيت المتخصصة
-4. **maintenance_records** - سجلات الصيانة
-5. **car_models** - قاعدة بيانات نماذج السيارات
-6. **oil_products** - منتجات الزيت التجارية
-7. **service_centers** - مراكز الخدمة المعتمدة
+### Vehicle Management
+- **VIN decoding** via NHTSA API with caching
+- **Multi-vehicle support** per user account
+- **Custom vehicle settings** with JSONB storage
+- **Primary vehicle** designation
 
-#### مميزات قاعدة البيانات:
-- **Row Level Security (RLS)** للأمان
-- **Triggers** للتحديث التلقائي
-- **Indexes** للأداء المحسن
-- **JSON Support** للبيانات المرنة
-- **UUID** للمعرفات الفريدة
+### Maintenance System
+- **Smart notifications** based on mileage/time
+- **Cost tracking** in multiple currencies
+- **Service history** with detailed records
+- **Reminder management** system
 
-## 🚀 التشغيل والإعداد
+### Data Security
+- **Row Level Security** policies for user data
+- **Encrypted connections** to Supabase
+- **API key protection** with environment variables
+- **Input validation** and sanitization
 
-### متطلبات النظام
-- Flutter SDK 3.22.0+
-- Dart SDK 3.8.1+
-- حساب Supabase (للإنتاج)
+## 🎨 UI/UX Design
 
-### خطوات التشغيل
+### Design Principles
+- **Arabic-first** interface with RTL support
+- **Material Design 3** components and theming
+- **Consistent spacing** and typography
+- **Accessibility** considerations
 
-1. **استنساخ المشروع:**
-```bash
-git clone https://github.com/alimuthana222/caroil-flutter.git
-cd caroil-flutter
-```
+### Color Scheme
+- **Primary**: Blue 700 (#1976D2)
+- **Secondary**: Blue 500 (#2196F3)
+- **Surface**: White/Grey 50
+- **Error**: Red 500
 
-2. **تثبيت التبعيات:**
-```bash
-flutter pub get
-```
+### Typography
+- **Headers**: Bold, 18-24px
+- **Body**: Regular, 14-16px
+- **Captions**: Light, 12px
+- **Font**: System fonts with Arabic support
 
-3. **إعداد Supabase:**
-   - إنشاء مشروع جديد في [Supabase](https://supabase.com)
-   - تشغيل ملف `database/schema.sql` في SQL Editor
-   - تشغيل ملف `database/seed_data.sql` لإدراج البيانات الأولية
-   - تحديث `lib/config/supabase_config.dart` بالمعلومات الصحيحة:
+## 🧪 Testing
 
-```dart
-static const String supabaseUrl = 'YOUR_SUPABASE_URL';
-static const String supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY';
-```
-
-4. **إنتاج النماذج:**
-```bash
-dart run build_runner build
-```
-
-5. **تشغيل التطبيق:**
-```bash
-flutter run
-```
-
-## 📱 الشاشات والوظائف
-
-### 1. شاشة البحث الرئيسية
-- إدخال رقم VIN مع التحقق التلقائي
-- دعم 17 خانة مع استبعاد الأحرف المحظورة (I, O, Q)
-- واجهة عربية مع تدرجات لونية جذابة
-
-### 2. شاشة نتائج البحث
-- عرض معلومات السيارة الأساسية
-- توصيات الزيت المفصلة
-- معلومات المحرك التقنية
-- أزرار للانتقال للتفاصيل الكاملة
-
-### 3. شاشة التفاصيل الشاملة
-- **علامة تبويب المعلومات:** بيانات السيارة وحالة التعديل
-- **علامة تبويب المحرك:** مواصفات تقنية مفصلة
-- **علامة تبويب الزيت:** توصيات شاملة ومنتجات متاحة
-- **علامة تبويب الصيانة:** سجلات الصيانة التاريخية
-
-### 4. شاشة إضافة الصيانة
-- نموذج شامل لتسجيل أعمال الصيانة
-- اختيار نوع الخدمة من قائمة محددة مسبقاً
-- تسجيل تفاصيل الزيت والفلتر المستخدم
-- حساب التكاليف بعملات مختلفة
-
-### 5. شاشة منتجات الزيت
-- عرض المنتجات المتوافقة مع السيارة
-- تصفية حسب نوع الزيت (صناعي، نصف صناعي، تقليدي)
-- معلومات الأسعار والتوفر حسب المنطقة
-- مميزات ومواصفات كل منتج
-
-## 🌍 الدعم الإقليمي
-
-### المناطق المدعومة:
-- **الولايات المتحدة وكندا** - قاعدة بيانات NHTSA
-- **الشرق الأوسط** - السعودية، الإمارات، الكويت، قطر
-- **الصين** - السيارات المحلية والمستوردة
-- **أوروبا** - المعايير الأوروبية
-- **آسيا** - اليابان، كوريا الجنوبية
-
-### العملات المدعومة:
-- USD (دولار أمريكي)
-- SAR (ريال سعودي)  
-- AED (درهم إماراتي)
-- EUR (يورو)
-- CNY (يوان صيني)
-
-## 🔧 التطوير والتخصيص
-
-### إضافة نماذج سيارات جديدة:
-1. إدراج البيانات في جدول `car_models`
-2. إضافة مواصفات المحرك في `engine_specifications`
-3. تحديد توصيات الزيت في `oil_specifications`
-
-### إضافة منتجات زيت جديدة:
-1. إدراج في جدول `oil_products`
-2. تحديد المناطق المتاحة
-3. ربط بالسيارات المتوافقة
-
-### تخصيص التوصيات:
-- تعديل دالة `_getOilSpecsForVehicle` في `car_database_service.dart`
-- إضافة شروط جديدة للماركات والموديلات
-- تحديث قاعدة البيانات بالمعلومات الجديدة
-
-## 🧪 الاختبار
-
-### تشغيل الاختبارات:
+### Unit Tests
 ```bash
 flutter test
 ```
 
-### اختبارات قاعدة البيانات:
+### Integration Tests
 ```bash
-flutter test test/database_test.dart
+flutter test integration_test/
 ```
 
-### اختبارات الخدمات:
-```bash
-flutter test test/services_test.dart
-```
+### Database Tests
+Test your Supabase setup with the included test queries in the schema file.
 
-## 📦 البناء للإنتاج
+## 📦 Building for Production
 
-### Android:
+### Android
 ```bash
 flutter build apk --release
+# or
+flutter build appbundle --release
 ```
 
-### iOS:
+### iOS
 ```bash
 flutter build ios --release
 ```
 
-### Web:
+### Web
 ```bash
 flutter build web --release
 ```
 
-## 🔒 الأمان والخصوصية
+## 🔒 Security Considerations
 
-- **Row Level Security** في Supabase
-- **تشفير البيانات** أثناء النقل والتخزين
-- **مصادقة اختيارية** للمستخدمين
-- **حماية API Keys** في متغيرات البيئة
+- **Environment Variables**: Use for production API keys
+- **RLS Policies**: Ensure proper data access control
+- **Input Validation**: Sanitize all user inputs
+- **API Rate Limiting**: Monitor Supabase usage
+- **Regular Updates**: Keep dependencies current
 
-## 🐛 المشاكل المعروفة والحلول
+## 🤝 Contributing
 
-### 1. خطأ الاتصال بـ Supabase:
-- التأكد من صحة URL و API Key
-- فحص اتصال الإنترنت
-- التحقق من إعدادات RLS
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-### 2. بطء في تحميل البيانات:
-- فحص الـ Indexes في قاعدة البيانات
-- تحسين الاستعلامات
-- استخدام التخزين المؤقت
+## 📝 License
 
-### 3. مشاكل في عرض النص العربي:
-- التأكد من تضمين الخطوط المناسبة
-- فحص إعدادات RTL
-- تحديث Flutter إلى أحدث إصدار
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🤝 المساهمة
+## 🆘 Support
 
-نرحب بالمساهمات! الرجاء:
+- **Documentation**: Check the setup guides
+- **Issues**: Report bugs via GitHub Issues
+- **Discussions**: Use GitHub Discussions for questions
+- **Email**: Contact the maintainers
 
-1. Fork المشروع
-2. إنشاء branch جديد للميزة المطلوبة
-3. Commit التغييرات مع رسائل واضحة
-4. Push إلى الـ branch
-5. إنشاء Pull Request
+## 🚀 Roadmap
 
-## 📄 الترخيص
+### Phase 1 (Current)
+- [x] Complete authentication system
+- [x] Vehicle management with VIN lookup
+- [x] Basic maintenance tracking
+- [x] Oil recommendations engine
 
-هذا المشروع مرخص تحت رخصة MIT. راجع ملف `LICENSE` للتفاصيل.
+### Phase 2 (Next)
+- [ ] Advanced analytics and insights
+- [ ] Service center integration
+- [ ] Parts ordering system
+- [ ] Social features and communities
 
-## 📞 الدعم والتواصل
+### Phase 3 (Future)
+- [ ] IoT integration for automatic data
+- [ ] Machine learning recommendations
+- [ ] Fleet management features
+- [ ] Multi-platform sync
 
-- **Issues**: [GitHub Issues](https://github.com/alimuthana222/caroil-flutter/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/alimuthana222/caroil-flutter/discussions)
+## 🏆 Acknowledgments
+
+- **Supabase** for the excellent backend platform
+- **Flutter Team** for the amazing framework
+- **NHTSA** for vehicle data API
+- **Community** for feedback and contributions
 
 ---
 
-**OilMate** - دليلك الشامل لزيت السيارات 🛢️🚗
+**OilMate** - Your complete car maintenance companion 🚗✨
